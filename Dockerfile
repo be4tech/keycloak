@@ -1,4 +1,4 @@
-FROM be4tech/keycloak-newo:latest
+FROM be4tech/keycloak-newo
 
 COPY docker-entrypoint.sh /opt/keycloak/utils
 
