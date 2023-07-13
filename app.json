@@ -1,5 +1,5 @@
 {
-    "name": "Keycloak Deployment to Heroku - Free Dynos",
+    "name": "Keycloak Deployment to Heroku - basic Dynos",
     "description": "Deployment of the Keycloak Identity and Access Management Solution to Heroku using a slightly adapted version of the official Docker container image",
     "keywords": [
         "identity",
@@ -9,7 +9,7 @@
         "heroku"
     ],
     "stack": "container",
-    "repository": "https://github.com/mhajric/keycloak-heroku",
+    "repository": "https://github.com/be4tech/keycloak",
 	"logo": "https://www.keycloak.org/resources/images/keycloak_logo_480x108.png",
     "success_url": "/",
     "env": {
@@ -19,7 +19,7 @@
         },
         "KEYCLOAK_PASSWORD": {
             "description": "Initial Admin password",
-            "value": "admin"
+            "value": "Gpsglobal2014"
         },
         "PROXY_ADDRESS_FORWARDING": {
             "description": "Set to true since we will be running behind Heroku's load balancers",

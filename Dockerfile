@@ -1,7 +1,8 @@
-FROM be4tech/newo-keycloak:latest
+FROM jboss/keycloak:latest
 
-COPY docker-entrypoint.sh /opt/keycloak/utils
+COPY docker-entrypoint.sh /opt/jboss/tools
+COPY themes/. /opt/jboss/keycloak/themes
 
-ENTRYPOINT [ "/opt/keycloak/utils/docker-entrypoint.sh" ]
+ENTRYPOINT [ "/opt/jboss/tools/docker-entrypoint.sh" ]
 CMD ["-b", "0.0.0.0"]
 
