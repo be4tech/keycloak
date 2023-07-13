@@ -12,15 +12,15 @@ WORKDIR /opt/keycloak
 RUN keytool -genkeypair -storepass password -storetype PKCS12 -keyalg RSA -keysize 2048 -dname "CN=server" -alias server -ext "SAN:c=DNS:localhost,IP:127.0.0.1" -keystore conf/server.keystore
 RUN /opt/keycloak/bin/kc.sh build
 
-FROM quay.io/keycloak/keycloak:latest
+FROM quay.io/keycloak/keycloak:19.0.1
 COPY --from=builder /opt/keycloak/ /opt/keycloak/
 COPY themes/. /opt/keycloak/themes
 
 # change these values to point to a running postgres instance
-ENV KC_DB=postgres
-ENV KC_DB_URL=<DBURL>
-ENV KC_DB_USERNAME=<DBUSERNAME>
-ENV KC_DB_PASSWORD=<DBPASSWORD>
+# ENV KC_DB=postgres
+# ENV KC_DB_URL=<DBURL>
+# ENV KC_DB_USERNAME=<DBUSERNAME>
+# ENV KC_DB_PASSWORD=<DBPASSWORD>
 ENV KC_HOSTNAME=localhost
-ENTRYPOINT ["/opt/keycloak/bin/kc.sh"]
+ENTRYPOINT ["/opt/keycloak/bin/kc.sh", "start", "--optimized"]
 CMD ["-b", "0.0.0.0"]
