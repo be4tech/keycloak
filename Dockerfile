@@ -10,10 +10,10 @@ FROM quay.io/keycloak/keycloak:19.0.1
 COPY --from=builder /opt/keycloak/ /opt/keycloak/
 COPY themes/. /opt/keycloak/themes
 
-WORKDIR /opt/keycloak
-RUN keytool -genkeypair -storepass password -storetype PKCS12 -keyalg RSA -keysize 2048 -dname "CN=server" -alias server -ext "SAN:c=DNS:localhost,IP:127.0.0.1" -keystore conf/server.keystore
+# WORKDIR /opt/keycloak
+# RUN keytool -genkeypair -storepass password -storetype PKCS12 -keyalg RSA -keysize 2048 -dname "CN=server" -alias server -ext "SAN:c=DNS:localhost,IP:127.0.0.1" -keystore conf/server.keystore
 ENV KC_HTTP_ENABLED=true
 ENV KC_HOSTNAME_STRICT=false
 ENTRYPOINT ["/opt/keycloak/bin/kc.sh", "start", "--proxy", "edge"]
-
+CMD ["-b", "0.0.0.0"]
 
